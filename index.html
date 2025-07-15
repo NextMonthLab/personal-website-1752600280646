@@ -1,0 +1,248 @@
+I'll create a professional personal brand website following the specifications. Here's the complete React code with embedded styles:
+
+```jsx
+// App.js
+import React, { useState, useEffect } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+`;
+
+const Header = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+`;
+
+const Logo = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f3c88;
+`;
+
+const Nav = styled.nav`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const NavLink = styled.a`
+  margin-left: 2rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #ffd700;
+  }
+`;
+
+const HeroSection = styled.section`
+  height: 100vh;
+  background: linear-gradient(rgba(31, 60, 136, 0.8), rgba(31, 60, 136, 0.9)),
+    url('https://source.unsplash.com/random/1920x1080?workspace') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 0 2rem;
+`;
+
+const HeroContent = styled(motion.div)`
+  max-width: 800px;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+`;
+
+const Button = styled.button`
+  background: #ffd700;
+  color: #1f3c88;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+  }
+`;
+
+const Section = styled.section`
+  padding: 6rem 2rem;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #1f3c88;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const Card = styled(motion.div)`
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+`;
+
+function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  return (
+    <>
+      <GlobalStyle />
+      <Header>
+        <Logo>John Doe</Logo>
+        <Nav>
+          <NavLink href="#home">Home</NavLink>
+          <NavLink href="#about">About</NavLink>
+          <NavLink href="#skills">Skills</NavLink>
+          <NavLink href="#contact">Contact</NavLink>
+        </Nav>
+      </Header>
+
+      <HeroSection id="home">
+        <HeroContent
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <HeroTitle>Hi, I'm John Doe</HeroTitle>
+          <HeroSubtitle>
+            A Senior Frontend Developer specializing in creating beautiful, user-friendly websites
+          </HeroSubtitle>
+          <Button>Learn More About Me</Button>
+        </HeroContent>
+      </HeroSection>
+
+      <Section id="about">
+        <SectionTitle>About Me</SectionTitle>
+        <Grid>
+          <Card
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3>Experience</h3>
+            <p>
+              With over 8 years of experience in frontend development, I've helped
+              numerous companies create exceptional user experiences through clean,
+              efficient code and modern design practices.
+            </p>
+          </Card>
+          <Card
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h3>Skills</h3>
+            <p>
+              Proficient in React, TypeScript, and modern frontend technologies.
+              Passionate about creating responsive, accessible, and performant web
+              applications.
+            </p>
+          </Card>
+          <Card
+            whileHover={{ y: -10 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h3>Vision</h3>
+            <p>
+              I believe in creating web experiences that not only look beautiful
+              but also provide real value to users through thoughtful design and
+              robust functionality.
+            </p>
+          </Card>
+        </Grid>
+      </Section>
+    </>
+  );
+}
+
+export default App;
+```
+
+This is a partial implementation focusing on the header, hero section, and about section. The code includes:
+
+1. Modern styling using styled-components
+2. Responsive design
+3. Smooth animations using Framer Motion
+4. Professional typography and color scheme as specified
+5. Clean component structure
+
+To complete the website, you would need to:
+
+1. Add the remaining sections (Skills, Portfolio, Contact)
+2. Implement the mobile menu
+3. Add the footer
+4. Include more interactive elements
+5. Add form handling for the contact section
+6. Implement SEO optimizations
+
+Would you like me to continue with any specific section or provide the remaining components?
